@@ -1,37 +1,36 @@
 FUNCTION_BLOCK driver
 
 VAR_INPUT
-  s1 : REAL;
-  s2 : REAL;
-  s3 : REAL;
+  sensor_1 : REAL;
+  sensor_2 : REAL;
+  sensor_3 : REAL;
 END_VAR
 
 VAR_OUTPUT
-  m1 : REAL;
-  m2 : REAL;
+  volante : REAL;
 END_VAR
 
 
-FUZZIFY s1
+FUZZIFY sensor_1
   TERM sem_contato    := TRAPE 0 0.3 0.6 0.8;
   TERM contato  := TRAPE 0.6 0.75 0.85 1;
 END_FUZZIFY
 
-FUZZIFY s2
+FUZZIFY sensor_2
   TERM sem_contato    := TRAPE 0 0.3 0.6 0.8;
   TERM contato  := TRAPE 0.6 0.75 0.85 1;
 END_FUZZIFY
 
-FUZZIFY s3
+FUZZIFY sensor_3
   TERM sem_contato    := TRAPE 0 0.3 0.6 0.8;
   TERM contato  := TRAPE 0.6 0.75 0.85 1;
 END_FUZZIFY
 
 
 DEFUZZIFY volante
-  TERM vira_para_direita := TRIAN -1 -0.8 0;
-  TERM vira_nada     := TRIAN -0.5 -0.1 0.5;
-  TERM vira_para_esquerda  := TRIAN 0 0.8 1;
+  TERM virar_para_direita := TRIAN -1 -0.8 0;
+  TERM nao_virar     := TRIAN -0.5 -0.1 0.5;
+  TERM virar_para_esquerda  := TRIAN 0 0.8 1;
   METHOD             : COA;
   DEFAULT            := 0;
 END_DEFUZZIFY
@@ -43,7 +42,7 @@ RULEBLOCK No1
   ACT  : MIN;         // Use 'min' activation method
   ACCU : MAX;         // Use 'max' accumulation method
 
-  RULE 1  : IF s1 IS contato AND s2 IS contato AND s3 IS sem_contato  THEN volante IS vira_para_direita;
+  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN volante IS vira_para_direita;
   
 END_RULEBLOCK
 
