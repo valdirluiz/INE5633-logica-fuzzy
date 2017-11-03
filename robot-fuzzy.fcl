@@ -42,7 +42,7 @@ RULEBLOCK No1
   ACT  : MIN;         // Use 'min' activation method
   ACCU : MAX;         // Use 'max' accumulation method
 
-  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN volante IS vira_para_direita;
+  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN volante IS virar_para_direita;
   
 END_RULEBLOCK
 
