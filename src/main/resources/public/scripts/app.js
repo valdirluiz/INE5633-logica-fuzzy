@@ -12,40 +12,22 @@ var app = angular.module('todoapp', [
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         templateUrl: 'views/home.html',
-        controller: 'ListCtrl'
+        controller: 'RobotCtrl'
     }).otherwise({
         redirectTo: '/'
     })
 });
 
-app.controller('ListCtrl', function ($scope, $http) {
-    $http.get('/api/v1/todos').success(function (data) {
-        $scope.todos = data;
-    }).error(function (data, status) {
-        console.log('Error ' + data)
-    })
+app.controller('RobotCtrl', function ($scope, $http) {
+     
 
-    $scope.todoStatusChanged = function (todo) {
-        console.log(todo);
-        $http.put('/api/v1/todos/' + todo.id, todo).success(function (data) {
-            console.log('status changed');
+    $scope.statusChanged = function () {
+        console.log($scope.robot);
+        $http.post('/api/v1/robot', $scope.robot).success(function (data) {
+            $scope.robot = data;
         }).error(function (data, status) {
             console.log('Error ' + data)
-        })
+        });
     }
 });
 
-app.controller('CreateCtrl', function ($scope, $http, $location) {
-    $scope.todo = {
-        done: false
-    };
-
-    $scope.createTodo = function () {
-        console.log($scope.todo);
-        $http.post('/api/v1/todos', $scope.todo).success(function (data) {
-            $location.path('/');
-        }).error(function (data, status) {
-            console.log('Error ' + data)
-        })
-    }
-});

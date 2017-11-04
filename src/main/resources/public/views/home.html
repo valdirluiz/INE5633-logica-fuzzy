@@ -2,22 +2,35 @@
 
   <div class="form-group">
     <label for="sensor1">Sensor 1</label>
-    <input type="email" class="form-control" id="sensor1"   >
+    <input type="text" ng-model="robot.sensor1" class="form-control" id="sensor1"   >
      
   </div>
 
   <div class="form-group">
     <label for="sensor2">Sensor 2</label>
-    <input type="email" class="form-control" id="sensor2"   >
+    <input type="text" ng-model="robot.sensor2" class="form-control" id="sensor2"   >
     
   </div>
 
   <div class="form-group">
     <label for="sensor3">Sensor 3</label>
-    <input type="email" class="form-control" id="sensor3"   >
+    <input type="text" ng-model="robot.sensor3" class="form-control" id="sensor3"   >
     
   </div>
    
   </div>
-  <button type="submit" class="btn btn-primary">Atualizar</button>
+  <button type="submit" ng-click="statusChanged()" class="btn btn-primary">Atualizar</button>
+
+  <div class="form-group">
+    <label for="sensor2">Motor 1</label>
+    <input disabled type="text" ng-model="robot.motor1" class="form-control" id="sensor2"   >
+    
+  </div>
+
+  <div class="form-group">
+    <label for="sensor3">Motor 2 3</label>
+    <input disabled type="text" ng-model="robot.motor2" class="form-control" id="sensor3"   >
+    
+  </div>
+
 </form>

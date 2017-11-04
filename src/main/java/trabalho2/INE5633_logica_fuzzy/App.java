@@ -12,14 +12,20 @@ public class App {
 	public static void main(String[] args) {
 
 		System.out.println("Iniciando sistema!");
-		FIS fis = FIS.load(FILENAME, true);
+		FIS fis = getFIS();
 
 		fis.setVariable("sensor_1", 0.9);
 		fis.setVariable("sensor_2", 0.9);
+		fis.setVariable("sensor_3", 0.2);
 
 		fis.evaluate();
 
 		double offset = fis.getVariable("volante").defuzzify();
 		System.out.println(offset);
+	}
+
+	public static FIS getFIS() {
+		FIS fis = FIS.load(FILENAME, true);
+		return fis;
 	}
 }
