@@ -7,7 +7,7 @@ VAR_INPUT
 END_VAR
 
 VAR_OUTPUT
-  volante : REAL;
+  motor_esquerdo : REAL;
 END_VAR
 
 
@@ -27,7 +27,7 @@ FUZZIFY sensor_3
 END_FUZZIFY
 
 
-DEFUZZIFY volante
+DEFUZZIFY motor_esquerdo
   TERM virar_para_direita := TRIAN -1 -0.8 0;
   TERM nao_virar     := TRIAN -0.5 -0.1 0.5;
   TERM virar_para_esquerda  := TRIAN 0 0.8 1;
@@ -42,9 +42,11 @@ RULEBLOCK No1
   ACT  : MIN;         // Use 'min' activation method
   ACCU : MAX;         // Use 'max' accumulation method
 
-  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN volante IS virar_para_direita;
+  //regra para virar para a direita, falta implementar o motor direito
+  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN motor_esquerdo IS nao_virar;
   
-  RULE 2  : IF sensor_3 IS contato AND sensor_2 IS contato AND sensor_1 IS sem_contato  THEN volante IS virar_para_esquerda;
+  //regra para virar para a esquerda, falta implementar o motor direito
+  RULE 2  : IF sensor_3 IS contato AND sensor_2 IS contato AND sensor_1 IS sem_contato  THEN motor_esquerdo IS virar_para_esquerda;
  
  
 END_RULEBLOCK

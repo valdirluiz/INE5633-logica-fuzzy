@@ -10,6 +10,7 @@ public class RobotResource {
 
 	private static final String API_CONTEXT = "/api/v1";
 	private static final String FILENAME = "robot-fuzzy.fcl";
+	private static Gson gson = new Gson();
 
 	public RobotResource() {
 		setupEndpoints();
@@ -18,7 +19,7 @@ public class RobotResource {
 	private void setupEndpoints() {
 
 		post(API_CONTEXT + "/robot", "application/json", (request, response) -> {
-			Robot robot = new Gson().fromJson(request.body(), Robot.class);
+			Robot robot = gson.fromJson(request.body(), Robot.class);
 
 			FIS fis = getFIS();
 			fis.setVariable("sensor_1", robot.sensor1);
@@ -27,12 +28,12 @@ public class RobotResource {
 
 			fis.evaluate();
 
-			double motor = fis.getVariable("volante").defuzzify();
+			double motor = fis.getVariable("motor_esquerdo").defuzzify();
 			robot.motor1 = motor;
 			robot.motor2 = motor;
 
 			return robot;
-		}, new JsonTransformer());
+		}, gson::toJson);
 
 	}
 
