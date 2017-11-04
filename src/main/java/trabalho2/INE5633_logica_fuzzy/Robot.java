@@ -1,18 +1,18 @@
-package com.todoapp;
+package trabalho2.INE5633_logica_fuzzy;
 
 import java.util.Date;
 
 /**
  * Created by shekhargulati on 09/06/14.
  */
-public class Todo {
+public class Robot {
 
     private String id;
     private String title;
     private boolean done;
     private Date createdOn = new Date();
 
-    public Todo( ) {
+    public Robot( ) {
         
     }
 

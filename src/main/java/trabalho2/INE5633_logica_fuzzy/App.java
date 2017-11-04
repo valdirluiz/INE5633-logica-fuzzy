@@ -14,6 +14,12 @@ public class App {
 		System.out.println("Iniciando sistema!");
 		FIS fis = FIS.load(FILENAME, true);
 
-		System.out.println(fis);
+		fis.setVariable("sensor_1", 0.9);
+		fis.setVariable("sensor_2", 0.9);
+
+		fis.evaluate();
+
+		double offset = fis.getVariable("volante").defuzzify();
+		System.out.println(offset);
 	}
 }

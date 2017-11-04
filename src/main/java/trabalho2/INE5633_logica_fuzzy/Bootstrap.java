@@ -1,4 +1,4 @@
-package com.todoapp;
+package trabalho2.INE5633_logica_fuzzy;
 
 import static spark.SparkBase.setIpAddress;
 import static spark.SparkBase.setPort;
@@ -13,7 +13,7 @@ public class Bootstrap {
 		setIpAddress(IP_ADDRESS);
 		setPort(PORT);
 		staticFileLocation("/public");
-		new TodoResource();
+		new RobotResource();
 	}
 
 }

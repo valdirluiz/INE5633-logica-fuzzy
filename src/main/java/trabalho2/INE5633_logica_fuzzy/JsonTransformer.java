@@ -1,4 +1,4 @@
-package com.todoapp;
+package trabalho2.INE5633_logica_fuzzy;
 
 import com.google.gson.Gson;
 import spark.Response;
