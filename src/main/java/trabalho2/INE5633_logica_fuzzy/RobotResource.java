@@ -28,9 +28,8 @@ public class RobotResource {
 
 			fis.evaluate();
 
-			double motor = fis.getVariable("motor_esquerdo").defuzzify();
-			robot.motor1 = motor;
-			robot.motor2 = motor;
+			robot.motorDireito = fis.getVariable("motor_direito").defuzzify()*10;
+			robot.motorEsquerdo = fis.getVariable("motor_esquerdo").defuzzify()*10;
 
 			return robot;
 		}, gson::toJson);

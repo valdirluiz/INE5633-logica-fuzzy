@@ -1,36 +1,65 @@
-<form>
+        <div class="row">
+            <div class="col s12">
+                <h5>Controlador Fuzzy</h5>
+            </div>
+        </div>
 
-  <div class="form-group">
-    <label for="sensor1">Sensor 1</label>
-    <input type="text" ng-model="robot.sensor1" class="form-control" id="sensor1"   >
-     
-  </div>
+        <div class="row">
+            <div class="col s4">
+                <form>
 
-  <div class="form-group">
-    <label for="sensor2">Sensor 2</label>
-    <input type="text" ng-model="robot.sensor2" class="form-control" id="sensor2"   >
-    
-  </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input ng-model="robot.sensor1" id="sensor1" type="text" class="validate">
+                            <label for="sensor1">Sensor 1 - Esquerda</label>
+                        </div>
+                    </div>
 
-  <div class="form-group">
-    <label for="sensor3">Sensor 3</label>
-    <input type="text" ng-model="robot.sensor3" class="form-control" id="sensor3"   >
-    
-  </div>
-   
-  </div>
-  <button type="submit" ng-click="statusChanged()" class="btn btn-primary">Atualizar</button>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input ng-model="robot.sensor2" id="sensor2" type="text" class="validate">
+                            <label for="sensor2">Sensor 2 - Frontal</label>
+                        </div>
+                    </div>
 
-  <div class="form-group">
-    <label for="sensor2">Motor 1</label>
-    <input disabled type="text" ng-model="robot.motor1" class="form-control" id="sensor2"   >
-    
-  </div>
 
-  <div class="form-group">
-    <label for="sensor3">Motor 2 3</label>
-    <input disabled type="text" ng-model="robot.motor2" class="form-control" id="sensor3"   >
-    
-  </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input ng-model="robot.sensor3" id="first_name" type="text" class="validate">
+                            <label for="first_name">Sensor 3 - Direita</label>
+                        </div>
+                    </div>
 
-</form>
+                    <div class="row">
+                            <button type="submit" ng-click="statusChanged()" class="waves-effect waves-light btn">Atualizar</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col s1"></div>
+            <div class="col s7">
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Motor esquerdo</span>
+                                <h5 ng-init="robot.motorEsquerdo=0.0">{{robot.motorEsquerdo}}</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col s12 m6">
+                            <div class="card blue-grey darken-1">
+                                <div class="card-content white-text">
+                                    <span class="card-title">Motor direito</span>
+                                    <h5 ng-init="robot.motorDireito=0.0">{{robot.motorDireito}}</h5>
+                                </div>
+                                 
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+

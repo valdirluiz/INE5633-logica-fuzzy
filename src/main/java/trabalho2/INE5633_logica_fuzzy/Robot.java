@@ -7,8 +7,8 @@ public class Robot {
 	public Double sensor2;
 	public Double sensor3;
 	
-	public Double motor1;
-	public Double motor2;
+	public Double motorDireito;
+	public Double motorEsquerdo;
    
 
     

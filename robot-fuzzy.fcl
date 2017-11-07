@@ -1,4 +1,4 @@
-FUNCTION_BLOCK driver
+FUNCTION_BLOCK khepera
 
 VAR_INPUT
   sensor_1 : REAL;
@@ -8,6 +8,7 @@ END_VAR
 
 VAR_OUTPUT
   motor_esquerdo : REAL;
+  motor_direito : REAL;
 END_VAR
 
 
@@ -17,28 +18,28 @@ FUZZIFY sensor_1
 END_FUZZIFY
 
 FUZZIFY sensor_2
-  TERM sem_contato    := TRAPE 0 0.3 0.6 0.8;
-  TERM contato  := TRAPE 0.6 0.75 0.85 1;
+  TERM sem_contato    := TRAPE 0 0.3 0.5 0.8;
+  TERM contato  := TRAPE 0.5 0.75 0.85 1;
 END_FUZZIFY
 
 FUZZIFY sensor_3
-  TERM sem_contato    := TRAPE 0 0.3 0.6 0.8;
-  TERM contato  := TRAPE 0.6 0.75 0.85 1;
+  TERM sem_contato    := TRAPE 0 0.3 0.5 0.8;
+  TERM contato  := TRAPE 0.5 0.75 0.85 1;
 END_FUZZIFY
 
 
 DEFUZZIFY motor_esquerdo
-  TERM forca_negativa := TRIAN -1 -0.8 0;
-  TERM neutro     := TRIAN -0.5 -0.1 0.5;
-  TERM forca_positiva  := TRIAN 0 0.8 1;
+  TERM forca_negativa := TRIAN -0.5 -0.4 0.1;
+  TERM neutro     := TRIAN -0.3 -0.1 0.3;
+  TERM forca_positiva  := TRIAN 0.1 0.4 0.5;
   METHOD             : COA;
   DEFAULT            := 0;
 END_DEFUZZIFY
 
 DEFUZZIFY motor_direito
-  TERM forca_negativa := TRIAN -1 -0.8 0;
-  TERM neutro     := TRIAN -0.5 -0.1 0.5;
-  TERM forca_positiva  := TRIAN 0 0.8 1;
+  TERM forca_negativa := TRIAN -0.5 -0.4 0.1;
+  TERM neutro     := TRIAN -0.3 -0.1 0.3;
+  TERM forca_positiva  := TRIAN 0.1 0.4 0.5;
   METHOD             : COA;
   DEFAULT            := 0;
 END_DEFUZZIFY
@@ -50,11 +51,13 @@ RULEBLOCK No1
   ACT  : MIN;         // Use 'min' activation method
   ACCU : MAX;         // Use 'max' accumulation method
 
-  //regra para virar para a direita, falta implementar o motor direito
-  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN motor_esquerdo IS forca_positiva;
+  //virar para a direita
+  RULE 1  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN motor_direito IS neutro;
+  RULE 2  : IF sensor_1 IS contato AND sensor_2 IS contato AND sensor_3 IS sem_contato  THEN motor_esquerdo IS forca_positiva; 
   
-  //regra para virar para a esquerda, falta implementar o motor direito
-  RULE 2  : IF sensor_3 IS contato AND sensor_2 IS contato AND sensor_1 IS sem_contato  THEN motor_direito IS forca_positiva;
+  //virar para a equerda
+  RULE 1  : IF sensor_3 IS contato AND sensor_2 IS contato AND sensor_1 IS sem_contato  THEN motor_direito IS forca_positiva;
+  RULE 2  : IF sensor_3 IS contato AND sensor_2 IS contato AND sensor_1 IS sem_contato  THEN motor_esquerdo IS neutro; 
  
  
 END_RULEBLOCK
