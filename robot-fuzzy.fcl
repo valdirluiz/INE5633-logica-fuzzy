@@ -29,7 +29,7 @@ END_FUZZIFY
 
 
 DEFUZZIFY motor_esquerdo
-  TERM forca_negativa := TRIAN -0.5 -0.4 0.1;
+  TERM forca_negativa := TRIAN -0.5 -0.4 -0.1;
   TERM neutro     := TRIAN -0.3 -0.1 0.3;
   TERM forca_positiva  := TRIAN 0.1 0.4 0.5;
   METHOD             : COA;
@@ -37,7 +37,7 @@ DEFUZZIFY motor_esquerdo
 END_DEFUZZIFY
 
 DEFUZZIFY motor_direito
-  TERM forca_negativa := TRIAN -0.5 -0.4 0.1;
+  TERM forca_negativa := TRIAN -0.5 -0.4 -0.1;
   TERM neutro     := TRIAN -0.3 -0.1 0.3;
   TERM forca_positiva  := TRIAN 0.1 0.4 0.5;
   METHOD             : COA;
